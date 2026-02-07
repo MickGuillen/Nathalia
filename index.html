@@ -75,12 +75,11 @@ button{
 <div class="card" id="main">
   <h1>💐 Para usted, Nathalia 💐</h1>
   <p>
-    Desde que llegó a mi vida, todo empezó a sentirse distinto.<br><br>
-    Esto no lo hago por juego ni por presión, sino porque quiero ser honesto con usted.
-    Cuando nos veamos, quiero pedírselo como se merece, frente a frente 🌷
+    Desde que usted llegó a mi vida, empecé a sentir las cosas de una forma diferente.<br><br>
+    No hago esto por juego ni por impulso; lo hago porque lo siento y porque quiero ser sincero con usted.
+    Cuando nos veamos, quiero pedírselo como se merece, mirándola a los ojos, sin pantallas de por medio 🌷
   </p>
   <h1>¿Quiere ser mi novia?</h1>
-
   <div class="buttons">
     <button class="yes" onclick="sayYes()">Sí 💖</button>
     <button class="no" id="noBtn">No 🙈</button>
@@ -90,8 +89,9 @@ button{
 <div class="card final" id="final">
   <h1>🌷 Gracias por decir que sí 🌷</h1>
   <p>
-    Prometo cuidarla, respetarla y hacerla sentir tranquila y querida.<br><br>
-    Esto es solo el inicio. Cuando nos veamos, quiero pedírselo como se merece 💐❤️
+    No sabe lo feliz que me hace su respuesta.<br><br>
+    Prometo cuidarla, respetarla y hacer todo lo posible por hacerla sentir tranquila, segura y querida.
+    Esto es solo el comienzo; cuando nos veamos, quiero pedírselo bien, como usted se merece 💐❤️
   </p>
 </div>
 
@@ -102,14 +102,12 @@ const music = document.getElementById('music');
 let activated = false;
 let speed = 900;
 
-
 document.addEventListener('click', () => {
   if(music.paused){
     music.volume = 0.7;
     music.play();
   }
 },{once:true});
-
 
 function moveNo(){
   const pad=20;
@@ -134,10 +132,10 @@ function activateNo(){
 noBtn.addEventListener('touchstart', activateNo);
 noBtn.addEventListener('mouseover', activateNo);
 
-
 function sayYes(){
   document.getElementById('main').style.display='none';
   document.getElementById('final').style.display='block';
+
   for(let i=0;i<25;i++){
     const h=document.createElement('div');
     h.className='heart';
@@ -159,5 +157,11 @@ setInterval(()=>{
   setTimeout(()=>t.remove(),8000);
 },350);
 </script>
+
 </body>
 </html>
+
+</script>
+</body>
+</html>
+
