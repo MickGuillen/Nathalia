@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Quiere ser mi novia?</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{
+  height:100vh;
+  background:linear-gradient(180deg,#0f2027,#203a43,#2c5364);
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:#fff;
+  text-align:center;
+  padding:15px;
+}
+.card{
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(10px);
+  padding:30px;
+  border-radius:22px;
+  box-shadow:0 10px 30px rgba(0,0,0,.4);
+  max-width:95%;
+  z-index:2;
+}
+h1{font-size:clamp(1.6rem,5vw,2.3rem);margin-bottom:18px}
+p{font-size:clamp(1rem,4vw,1.15rem);line-height:1.6;margin-bottom:25px}
+.buttons{display:flex;gap:20px;justify-content:center;margin-top:20px}
+button{
+  padding:14px 30px;
+  font-size:1.1rem;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+}
+.yes{background:#ff4d6d;color:#fff}
+.no{background:#ccc;color:#333}
+
+.final{display:none;animation:love 2s ease}
+@keyframes love{
+  0%{opacity:0;transform:scale(.8)}
+  50%{transform:scale(1.08)}
+  100%{opacity:1;transform:scale(1)}
+}
+
+.heart{
+  position:fixed;
+  font-size:1.8rem;
+  animation:float 2.5s linear forwards;
+}
+@keyframes float{to{transform:translateY(-120vh);opacity:0}}
+
+.tulip{
+  position:absolute;
+  top:-40px;
+  font-size:2rem;
+  animation:fall linear infinite;
+  opacity:.9;
+  z-index:1;
+}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+  <source src="photograph.mp3" type="audio/mp3">
+</audio>
+
+<div class="card" id="main">
+  <h1>💐 Para usted, Nathalia 💐</h1>
+  <p>
+    Desde que llegó a mi vida, todo empezó a sentirse distinto.<br><br>
+    Esto no lo hago por juego ni por presión, sino porque quiero ser honesto con usted.
+    Cuando nos veamos, quiero pedírselo como se merece, frente a frente 🌷
+  </p>
+  <h1>¿Quiere ser mi novia?</h1>
+
+  <div class="buttons">
+    <button class="yes" onclick="sayYes()">Sí 💖</button>
+    <button class="no" id="noBtn">No 🙈</button>
+  </div>
+</div>
+
+<div class="card final" id="final">
+  <h1>🌷 Gracias por decir que sí 🌷</h1>
+  <p>
+    Prometo cuidarla, respetarla y hacerla sentir tranquila y querida.<br><br>
+    Esto es solo el inicio. Cuando nos veamos, quiero pedírselo como se merece 💐❤️
+  </p>
+</div>
+
+<script>
+const noBtn = document.getElementById('noBtn');
+const music = document.getElementById('music');
+
+let activated = false;
+let speed = 900;
+
+
+document.addEventListener('click', () => {
+  if(music.paused){
+    music.volume = 0.7;
+    music.play();
+  }
+},{once:true});
+
+
+function moveNo(){
+  const pad=20;
+  const x=Math.random()*(window.innerWidth-noBtn.offsetWidth-pad);
+  const y=Math.random()*(window.innerHeight-noBtn.offsetHeight-pad);
+  noBtn.style.position='fixed';
+  noBtn.style.left=x+'px';
+  noBtn.style.top=y+'px';
+}
+
+function activateNo(){
+  if(!activated){
+    activated=true;
+    if(navigator.vibrate) navigator.vibrate(200);
+    setInterval(()=>{
+      moveNo();
+      speed=Math.max(250,speed-120);
+    },speed);
+  }
+}
+
+noBtn.addEventListener('touchstart', activateNo);
+noBtn.addEventListener('mouseover', activateNo);
+
+
+function sayYes(){
+  document.getElementById('main').style.display='none';
+  document.getElementById('final').style.display='block';
+  for(let i=0;i<25;i++){
+    const h=document.createElement('div');
+    h.className='heart';
+    h.textContent='💖';
+    h.style.left=Math.random()*window.innerWidth+'px';
+    h.style.bottom='0';
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),2500);
+  }
+}
+
+setInterval(()=>{
+  const t=document.createElement('div');
+  t.className='tulip';
+  t.textContent='🌷';
+  t.style.left=Math.random()*window.innerWidth+'px';
+  t.style.animationDuration=(3+Math.random()*5)+'s';
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(),8000);
+},350);
+</script>
+</body>
+</html>
